@@ -8,15 +8,15 @@ class App extends Component {
 
     this.state = {
       username: '',
-      inputValue: ''
+      value: ''
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleClick() {
-    console.log(`https://api.github.com/users/${this.state.inputValue}`)
-    axios.get(`https://api.github.com/users/${this.state.inputValue}`)
+    axios.get(`https://api.github.com/users/${this.state.value}`)
       .then((response) => {
         this.setState({username: response.data.name})
       })
@@ -25,23 +25,14 @@ class App extends Component {
       })
   }
 
-  updateInputValue(evt) {
-    this.setState({
-      inputValue: evt.target.value
-    })
-    console.log(evt.target.value);
+  handleChange(event) {
+    this.setState({value: event.target.value})
   }
 
   render() {
     return (
       <div className='button_container'>
-        <input className='username_input'
-          defaultValue=""
-          value={this.state.inputValue}
-          onChange={evt => this.updateInputValue}
-          placeholder='Enter Username'
-          type="text"
-        />
+        <input type="text" value={this.state.value} onChange={this.handleChange} />
         <button className='button' onClick={this.handleClick}>Click Me</button>
         <p>{this.state.username}</p>
       </div>

@@ -11,3 +11,10 @@
   height: 40px;
   width: 200px;
 }
+
+.input {
+  border-width: 1;
+  border-color: blue;
+  height: 40px;
+  width: 200px;
+}
